@@ -7,11 +7,11 @@ public class PriorityQueue {
         this.heap = new Heap();
     }
 
-    public void enqueue(Symbol symbol) {
-        heap.insert(symbol);
+    public void enqueue(Node node) {
+        heap.insert(node);
     }
 
-    public Symbol dequeue() {
+    public Node dequeue() {
         return heap.extractMin();
     }
 

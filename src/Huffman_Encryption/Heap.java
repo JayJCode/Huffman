@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Heap {
-    private final List<Symbol> heap;
+    private final List<Node> heap;
 
     public Heap() {
         this.heap = new ArrayList<>();
@@ -37,22 +37,22 @@ public class Heap {
     }
 
     private void swap(int i, int j) {
-        Symbol temp = heap.get(i);
+        Node temp = heap.get(i);
         heap.set(i, heap.get(j));
         heap.set(j, temp);
     }
 
-    public void insert(Symbol symbol) {
-        heap.add(symbol);
+    public void insert(Node node) {
+        heap.add(node);
         heapifyUp(heap.size() - 1);
     }
 
-    public Symbol extractMin() {
+    public Node extractMin() {
         if (heap.isEmpty()) {
             return null;
         }
-        Symbol min = heap.get(0);
-        Symbol last = heap.remove(heap.size() - 1);
+        Node min = heap.getFirst();
+        Node last = heap.removeLast();
         if (!heap.isEmpty()) {
             heap.set(0, last);
             heapifyDown(0);
