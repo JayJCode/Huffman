@@ -1,6 +1,6 @@
 package Huffman_Encryption;
 
-public class BuildHeap {
+public class Heap {
     static void heapify(int[] arr, int N, int i)
     {
         int smallest = i;
@@ -33,8 +33,6 @@ public class BuildHeap {
 
     static void printHeap(int[] arr, int N)
     {
-        System.out.println("Array representation of Heap is:");
-
         for (int i = 0; i < N; ++i)
             System.out.print(arr[i] + " ");
     }
