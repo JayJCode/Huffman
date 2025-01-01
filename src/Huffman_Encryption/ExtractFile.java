@@ -13,7 +13,10 @@ public class ExtractFile {
             Scanner textFileReader = new Scanner(File);
             this.text = "";
             while(textFileReader.hasNextLine()) {
-                this.text += textFileReader.nextLine() + "\n";
+                this.text += textFileReader.nextLine();
+                if(textFileReader.hasNextLine()) {
+                    this.text += "\n";
+                }
             }
         } catch(FileNotFoundException e) {
             System.out.println("Program haven't found file with name: "+fileName);
