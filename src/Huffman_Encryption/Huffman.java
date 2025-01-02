@@ -49,7 +49,7 @@ public class Huffman extends PriorityQueue {
             return;
         }
         printTree(root.getRight(), depth + 1);
-        System.out.println(" ".repeat(depth * 4) + root.getParent().getSymbol() + " (" + root.getParent().getFreq() + ")");
+        System.out.println(" ".repeat(depth * 8) + root.getParent().getSymbol() + " [" + root.getParent().getFreq() + "]");
         printTree(root.getLeft(), depth + 1);
     }
 }
