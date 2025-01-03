@@ -26,6 +26,9 @@ public class Main {
 
         Encryption encryption = new Encryption();
         encryption.writeFile(visualDictionary, originalFile.getText(), codes);
+
+        Decryption decryption = new Decryption();
+        decryption.readFile();
     }
 }
 
