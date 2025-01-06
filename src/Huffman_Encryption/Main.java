@@ -16,7 +16,7 @@ public class Main {
         String visualDictionary = "";
         System.out.println("Kody Huffmana:");
         for (Map.Entry<String, String> entry : codes.entrySet()) {
-            String pair = entry.getKey() + ": " + entry.getValue() + "\t";
+            String pair = entry.getKey() + ": " + entry.getValue() + ",\t";
             System.out.print(pair);
             visualDictionary += pair;
         }

@@ -1,8 +1,12 @@
 package Huffman_Encryption;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Map;
 
 public class Decryption {
 
@@ -31,5 +35,22 @@ public class Decryption {
                 System.out.print(String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0'));
             }
         }
+    }
+
+    private void getTextFromBinary(byte[] binaryData, Map<String, String> codes) {
+        for (byte b : binaryData) {
+            for (Map.Entry<String, String> entry : codes.entrySet()) {
+
+            }
+        }
+    }
+
+    private void getMatch(int codedValue, Map<String, String> codes) {
+
+    }
+
+    public void writeFile(String decryptedText) throws IOException {
+        Path encrypted = Files.createTempFile("encrypted", ".txt");
+        Files.writeString(encrypted, decryptedText);
     }
 }
