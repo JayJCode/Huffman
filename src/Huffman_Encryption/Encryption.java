@@ -15,15 +15,13 @@ public class Encryption {
             binaryText = "0".repeat(paddingLength) + binaryText;
         }
 
-        int byteCount = binaryText.length() / 8;
-        byte[] byteArray = new byte[byteCount];
-        for (int i = 0; i < byteCount; i++) {
-            String byteString = binaryText.substring(i * 8, (i + 1) * 8);
-            byteArray[i] = (byte) Integer.parseInt(byteString, 2);
-        }
+        System.out.println("Tekst binarny:");
+        System.out.println(binaryText);
+        byte[] byteArray = makeByteArray(binaryText);
 
         try (FileOutputStream fos = new FileOutputStream("encrypted.txt")) {
-            fos.write("\n---DICTIONARY---\n".getBytes(StandardCharsets.UTF_8));
+            fos.write((paddingLength + "\n").getBytes(StandardCharsets.UTF_8));
+            fos.write("---DICTIONARY---\n".getBytes(StandardCharsets.UTF_8));
             fos.write(dictionary.getBytes(StandardCharsets.UTF_8));
             fos.write("\n---BINARY-DATA---\n".getBytes(StandardCharsets.UTF_8));
             fos.write(byteArray);
@@ -32,14 +30,25 @@ public class Encryption {
 
     private String transferToBinary(Map<String, String> codes, String original) {
         String binaryText = "";
-        for(int i=0; i<original.length(); i++) {
+        for (int i = 0; i < original.length(); i++) {
             char c = original.charAt(i);
-            for (Map.Entry<String, String> entry : codes.entrySet()) {
-                if(String.valueOf(c).equals(entry.getKey())) {
-                    binaryText += entry.getValue();
-                }
+            String code = codes.get(String.valueOf(c));
+            if (code != null) {
+                binaryText += code;
+            } else {
+                throw new IllegalArgumentException("Nie znaleziono kodu dla znaku: " + c);
             }
         }
         return binaryText;
+    }
+
+    private byte[] makeByteArray(String binaryText) {
+        int byteCount = binaryText.length() / 8;
+        byte[] byteArray = new byte[byteCount];
+        for (int i = 0; i < byteCount; i++) {
+            String byteString = binaryText.substring(i * 8, (i + 1) * 8);
+            byteArray[i] = (byte) Integer.parseInt(byteString, 2);
+        }
+        return byteArray;
     }
 }

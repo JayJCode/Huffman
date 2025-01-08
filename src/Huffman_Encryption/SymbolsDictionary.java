@@ -17,6 +17,10 @@ public class SymbolsDictionary {
                 setSymbol(c);
             }
         }
+        System.out.println("Słownik symboli:");
+        for (Symbol symbol : dictionary) {
+            System.out.println(symbol.getSymbol() + " -> " + symbol.getFreq());
+        }
     }
 
     public List<Symbol> getDictionary() {

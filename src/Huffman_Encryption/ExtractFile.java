@@ -19,7 +19,7 @@ public class ExtractFile {
                 }
             }
         } catch(FileNotFoundException e) {
-            System.out.println("Program haven't found file with name: "+fileName);
+            System.out.println("Program nie znalazł pliku o nazwie: "+fileName);
             throw new RuntimeException(e);
         }
     }

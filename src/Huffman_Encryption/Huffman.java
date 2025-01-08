@@ -44,6 +44,22 @@ public class Huffman extends PriorityQueue {
         }
     }
 
+    public String printHuffmanCodes(Map<String, String> codes) {
+        StringBuilder visualDictionary = new StringBuilder();
+        System.out.println("Kody Huffmana:");
+
+        codes.forEach((symbol, code) -> {
+            System.out.println(symbol + " -> " + code + ",");
+            visualDictionary.append(symbol).append(" -> ").append(code).append(",\n");
+        });
+
+        if (!visualDictionary.isEmpty()) {
+            visualDictionary.setLength(visualDictionary.length() - 2);
+        }
+
+        return visualDictionary.toString();
+    }
+
     public void printTree(Node root, int depth) {
         if (root == null) {
             return;
