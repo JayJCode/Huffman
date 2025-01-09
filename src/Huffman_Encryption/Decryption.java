@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,17 +31,18 @@ public class Decryption {
 
             String dictionary = content.substring(dictStart + "---DICTIONARY---\n\n".length(), binaryStart);
             Map<String, String> codes = readCodes(dictionary);
-            System.out.println(codes);
+            //System.out.println(codes);
 
             byte[] binaryData = extractBinaryData(fileContent, binaryStart);
 
+            //System.out.println(Arrays.toString(binaryData));
             String binaryString = convertBinaryToString(binaryData);
             binaryString = binaryString.substring(paddingLength+8);
 
-            System.out.println(binaryString);
+            //System.out.println(binaryString);
             String decryptedText = decodeText(binaryString, codes).trim();
 
-            System.out.println(decryptedText);
+            //System.out.println(decryptedText);
             writeFile(decryptedText);
         }
     }

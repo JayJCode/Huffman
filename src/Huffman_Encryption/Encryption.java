@@ -11,12 +11,12 @@ public class Encryption {
         String binaryText = transferToBinary(codes, original);
 
         int paddingLength = 8 - (binaryText.length() % 8);
-        if (paddingLength < 8) {
+        if (paddingLength > 0) {
             binaryText = "0".repeat(paddingLength) + binaryText;
         }
 
-        System.out.println("Tekst binarny:");
-        System.out.println(binaryText);
+        //System.out.println("Tekst binarny:");
+        //System.out.println(binaryText);
         byte[] byteArray = makeByteArray(binaryText);
 
         try (FileOutputStream fos = new FileOutputStream("encrypted.txt")) {

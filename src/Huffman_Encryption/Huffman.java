@@ -65,9 +65,50 @@ public class Huffman extends PriorityQueue {
             return;
         }
         printTree(root.getRight(), depth + 1);
-        System.out.println(" ".repeat(depth * 8 + root.getParent().getSymbol().length() + 1) + "/");
-        System.out.println(" ".repeat(depth * 8) + root.getParent().getSymbol() + " [" + root.getParent().getFreq() + "]");
-        System.out.println(" ".repeat(depth * 8  + root.getParent().getSymbol().length() + 1) + "\\");
+
+        String originalSymbol = root.getParent().getSymbol();
+        String modifiedSymbol = originalSymbol;
+        if(root.hasRightLeaf(root)) {
+            System.out.println(" ".repeat(depth * 8 + 10) + "/");
+        }
+
+        if (originalSymbol.contains("\n")) {
+            modifiedSymbol = originalSymbol.replace("\n", "{Enter}");
+        } else if (originalSymbol.contains("\t")) {
+            modifiedSymbol = originalSymbol.replace("\t", "{Tab}");
+        }
+        System.out.println(" ".repeat(depth * 8) + modifiedSymbol + " [" + root.getParent().getFreq() + "]");
+
+        if(root.hasLeftLeaf(root)) {
+            System.out.println(" ".repeat(depth * 8 + 10) + "\\");
+        }
         printTree(root.getLeft(), depth + 1);
+    }
+
+    public void printHorizontalTree(Node root) {
+        printHorizontalTreeHelper(root, 0, "");
+    }
+
+    private void printHorizontalTreeHelper(Node node, int depth, String branch) {
+        if (node == null) {
+            return;
+        }
+
+        printHorizontalTreeHelper(node.getRight(), depth + 1, "/");
+
+        String nodeSymbol = node.getParent().getSymbol();
+        if (nodeSymbol.contains("\n")) {
+            nodeSymbol = nodeSymbol.replace("\n", "{Enter}");
+        } else if (nodeSymbol.contains("\t")) {
+            nodeSymbol = nodeSymbol.replace("\t", "{Tab}");
+        }
+        System.out.printf("%s%s%s [%d]%n",
+                " ".repeat(depth * 10),
+                branch,
+                nodeSymbol,
+                node.getParent().getFreq()
+        );
+
+        printHorizontalTreeHelper(node.getLeft(), depth + 1, "\\");
     }
 }

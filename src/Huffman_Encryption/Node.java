@@ -27,6 +27,14 @@ public class Node implements Comparable<Node> {
         return left == null && right == null;
     }
 
+    public boolean hasRightLeaf(Node node) {
+        return node.right != null;
+    }
+
+    public boolean hasLeftLeaf(Node node) {
+        return node.left != null;
+    }
+
     @Override
     public int compareTo(Node o) {
         return Integer.compare(this.parent.getFreq(), o.getParent().getFreq());

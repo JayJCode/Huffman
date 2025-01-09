@@ -1,7 +1,7 @@
 package Huffman_Encryption;
 
 public class Symbol implements Comparable<Symbol> {
-    private final String symbol;
+    private String symbol;
     private int freq;
 
     public Symbol(String symbol) {
@@ -11,6 +11,10 @@ public class Symbol implements Comparable<Symbol> {
 
     public String getSymbol() {
         return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     public int getFreq() {
