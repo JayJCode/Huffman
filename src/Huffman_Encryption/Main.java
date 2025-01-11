@@ -23,7 +23,7 @@ public class Main {
 
         System.out.println("Drzewo Huffmana:");
         //huffman.printTree(root, 0);     // Alternatywnie to była pierwsza opcja
-        huffman.printHorizontalTree(root);
+        huffman.printHorizontalTree(root, 0, "");
 
         // Punkt czwarty zapis do pliku (upewnić się że jest mniejszy rozmiar) 5 pkt
         Encryption encryption = new Encryption();
@@ -43,12 +43,3 @@ public class Main {
         compareCodedFiles.compareTexts("original.txt", "decrypted.txt");
     }
 }
-
-
-/*
-Można by było jakoś poczyścić ten kod i pododawać komentarze :)
-Ewentualnie rozbić troche PriorityQueue od Heap, Bo teraz troche to Heap ma zachowania kolejki,
-a ona tylko zamienia nazwy - w  sumie to jeszcze zmienie!
-Testy jednostkowe może? Ale raczej odpuszcze sobie :P
- */
-

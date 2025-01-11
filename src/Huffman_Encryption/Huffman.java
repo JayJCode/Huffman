@@ -61,6 +61,8 @@ public class Huffman extends PriorityQueue {
     }
 
     public void printTree(Node root, int depth) {
+        // Older version of printHorizontalTree
+
         if (root == null) {
             return;
         }
@@ -85,16 +87,12 @@ public class Huffman extends PriorityQueue {
         printTree(root.getLeft(), depth + 1);
     }
 
-    public void printHorizontalTree(Node root) {
-        printHorizontalTreeHelper(root, 0, "");
-    }
-
-    private void printHorizontalTreeHelper(Node node, int depth, String branch) {
+    public void printHorizontalTree(Node node, int depth, String branch) {
         if (node == null) {
             return;
         }
 
-        printHorizontalTreeHelper(node.getRight(), depth + 1, "/");
+        printHorizontalTree(node.getRight(), depth + 1, "/");
 
         String nodeSymbol = node.getParent().getSymbol();
         if (nodeSymbol.contains("\n")) {
@@ -109,6 +107,6 @@ public class Huffman extends PriorityQueue {
                 node.getParent().getFreq()
         );
 
-        printHorizontalTreeHelper(node.getLeft(), depth + 1, "\\");
+        printHorizontalTree(node.getLeft(), depth + 1, "\\");
     }
 }
